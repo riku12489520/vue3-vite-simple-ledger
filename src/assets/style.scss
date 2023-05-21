@@ -1,0 +1,80 @@
+/* 記帳 */
+$number-btn: #{bg-slate-600};
+$symbol-btn: #{bg-slate-400};
+$submit-btn: #{bg-violet-400};
+
+.screen-top-number {
+  @apply text-pink-500;
+}
+.screen-bottom-number {
+  @apply text-slate-700;
+}
+.show-dialog-btn-note {
+  @apply bg-violet-500;
+}
+.show-dialog-btn-date {
+  @apply bg-purple-500;
+}
+.keyboard-submit-btn {
+  @apply text-white #{$submit-btn};
+}
+
+.router-btn {
+  @apply bg-cyan-300 text-white;
+}
+
+@mixin baseButton($bg-color) {
+  @apply min-h-[4rem] min-w-[4rem] cursor-pointer p-3 text-center text-white #{$bg-color};
+}
+
+@mixin active-transition {
+  @apply transition-all active:rounded active:bg-white active:text-blue-950;
+}
+.number-keyboard-button {
+  @include baseButton($number-btn);
+  @include active-transition;
+}
+.func-keyboard-button {
+  @include baseButton($symbol-btn);
+  @include active-transition;
+}
+.number-keyboard-button-no-text {
+  @include baseButton($number-btn);
+  @apply pointer-events-none;
+}
+.func-keyboard-button-no-text {
+  @include baseButton($symbol-btn);
+  @apply pointer-events-none;
+}
+.number-bg {
+  @apply #{$number-btn};
+}
+.symbol-bg {
+  @apply #{$symbol-btn};
+}
+.show-dialog-base-btn {
+  @apply text-center align-middle text-xl  font-bold text-white;
+}
+.active-transition {
+  @apply transition-all active:bg-violet-300 active:text-white;
+}
+.total-amount-color {
+  @apply bg-red-200 text-orange-900;
+}
+.ledger-clean-btn{
+  @apply bg-red-400 text-white;
+}
+
+/* swal btn */
+.swal-common-btn {
+  @apply bg-orange-500 text-white mx-1 p-2 rounded border text-sm;
+}
+.custom-swal2-confirm {
+  @apply bg-cyan-600 #{!important};
+}
+.custom-swal2-clear {
+  @apply bg-red-500 #{!important};
+}
+.swal2-confirm:focus {
+  box-shadow: none !important;
+}
