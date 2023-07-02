@@ -74,7 +74,7 @@ const clearList = () => {
 </script>
 
 <template>
-  <div class="h-[650px] w-full overflow-auto p-2">
+  <div class="h-[650px] w-full overflow-auto">
     <table class="h-full w-full">
       <thead class="sticky top-0 z-10">
         <tr class="total-amount-color">
@@ -83,8 +83,10 @@ const clearList = () => {
             {{ formatNumber(totalAmount) }}
           </th>
         </tr>
-        <tr class="border-b">
-          <th v-for="title in titles" :key="title.title" :class="title.className">{{ title.title }}</th>
+        <tr class="bg-white">
+          <th v-for="title in titles" :key="title.title" :class="title.className">
+            {{ title.title }}
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -100,16 +102,16 @@ const clearList = () => {
             class="border-b last:border-none"
             @click="clearItemCheck(item, index)"
           >
-            <td>{{ item.date }}</td>
+            <td class="pl-4">{{ item.date }}</td>
             <td>{{ item.note }}</td>
-            <td class="text-right">{{ formatNumber(item.amount) }}</td>
+            <td class="pr-4 text-right">{{ formatNumber(item.amount) }}</td>
           </tr>
         </template>
       </tbody>
     </table>
   </div>
   <button
-    @click="clearList()"
+    @click="clearList"
     class="active-transition ledger-clean-btn w-full rounded-t-none px-2 py-4 text-xl font-bold"
   >
     清空帳本

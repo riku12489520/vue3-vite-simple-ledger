@@ -58,7 +58,8 @@ const ledgerNoteCommonItem = () => {
 const changeNoteCommonItem = (className) => {
   document.querySelectorAll(className).forEach((item) => {
     item.addEventListener('click', (event) => {
-      ledgerStore.ledgerItem.note = document.getElementById('swal-input').value = event.target.innerText
+      ledgerStore.ledgerItem.note = document.getElementById('swal-input').value =
+        event.target.innerText
     })
   })
 }
@@ -71,7 +72,9 @@ const popupNote = () => {
   })
 
   const input = document.getElementById('swal-input')
-  document.getElementById('swal-other').innerHTML = `<div class="flex flex-wrap justify-center mt-4">
+  document.getElementById(
+    'swal-other'
+  ).innerHTML = `<div class="flex flex-wrap justify-center mt-4">
       ${ledgerNoteCommonItem()}
     </div>`
   input.focus()
@@ -102,14 +105,43 @@ const submitItem = () => {
   ledgerStore.ledgerItem.note = ''
   ledgerStore.ledgerItem.date = new Date().toISOString().slice(0, 10)
 }
+
+const body = document.body
+const stringNumerArr = numberArr.value.map((num) => {
+  return `${num}`
+})
+const keyboarEnbleKeys = stringNumerArr.concat(['+', '-', '*', '/'])
+const keyboardEvent = (event) => {
+  if (document.querySelector('.swal2-container')) return
+  if (keyboarEnbleKeys.includes(event.key)) {
+    let key = event.key
+    if (!isNaN(Number(key))) {
+      key = Number(key)
+    }
+    counterStore.addCounterString(key)
+  } else if (event.key === '0') {
+    counterStore.addCounterString(0)
+  } else if (event.key === 'Enter') {
+    counterStore.editNumber('equal')
+  } else if (['Backspace', 'Delete'].includes(event.key)) {
+    counterStore.editNumber('del')
+  }
+}
+body.addEventListener('keyup', keyboardEvent, false)
 </script>
 
 <template>
   <div class="grid h-[80px] w-full grid-cols-5">
-    <button @click="popupNote()" class="active-transition show-dialog-base-btn show-dialog-btn-note col-span-3">
+    <button
+      @click="popupNote"
+      class="active-transition show-dialog-base-btn show-dialog-btn-note col-span-3"
+    >
       筆記
     </button>
-    <button @click="popupDate()" class="active-transition show-dialog-base-btn show-dialog-btn-date col-span-2">
+    <button
+      @click="popupDate"
+      class="active-transition show-dialog-base-btn show-dialog-btn-date col-span-2"
+    >
       日期
     </button>
   </div>
@@ -154,7 +186,7 @@ const submitItem = () => {
     </div>
   </div>
   <button
-    @click="submitItem()"
+    @click="submitItem"
     class="active-transition keyboard-submit-btn w-full rounded-t-none px-2 py-[2.5rem] text-xl font-bold"
   >
     送出

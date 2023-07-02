@@ -94,7 +94,9 @@ export const useCounterStore = defineStore({
         } else if (this.currentCounterList[strListLen - 1] === '') {
           this.currentCounterList.pop()
         } else {
-          this.currentCounterList[strListLen - 1] = `${this.currentCounterList[strListLen - 1]}`.slice(0, -1)
+          this.currentCounterList[strListLen - 1] = `${
+            this.currentCounterList[strListLen - 1]
+          }`.slice(0, -1)
         }
       }
       if (method == 'equal') {
